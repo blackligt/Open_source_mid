@@ -1,6 +1,23 @@
 # Program make a simple calculator
 '''계산기 프로그램'''
 
+import logging
+formatter = logging.Formatter('%(asctime)s %(message)s')
+
+logger_1 = logging.getLogger('normal_log')
+logger_1.setLevel(logging.INFO)
+logger_2 = logging.getLogger('erroer_log')
+logger_2.setLevel(logging.ERROR)
+
+
+file_handler_1 = logging.FileHandler('./normal.log')
+file_handler_1.setFormatter(formatter)
+file_handler_2 = logging.FileHandler('./error.log')
+file_handler_2.setFormatter(formatter)
+
+logger_1.addHandler(file_handler_1)
+logger_2.addHandler(file_handler_2)
+
 # This function adds two numbers
 
 
@@ -35,11 +52,7 @@ def divide(div_num1, div_num2):
     '''
     두 수를 입력받고 나누는 함수
     '''
-    if div_num2 == 0:
-        print("divide by zero error")
-        return "error"
-    else:
-        return div_num1/div_num2
+    return div_num1/div_num2
 
 
 def end_qustion():
@@ -47,7 +60,13 @@ def end_qustion():
     next_calculation = input("Let's do next calculation? (yes/no): ")
     low_next_calculation = next_calculation.lower()
     if low_next_calculation == "no":
-        return 0
+        end_answer = input("Are you sure? (yes/no): ")
+        low_end_answer = end_answer.lower()
+        if low_end_answer == "yes":
+            return 0
+
+        else:
+            return 1
 
     elif low_next_calculation == "yes":
         return 1
@@ -73,16 +92,28 @@ while True:
         num2 = float(input("Enter second number: "))
 
         if choice == '1':
-            print(num1, "+", num2, "=", add(num1, num2))
+            answer = add(num1, num2)
+            print(num1, "+", num2, "=", answer)
+            logger_1.info("%d + %d = %d calculated", num1, num2, answer)
 
         elif choice == '2':
-            print(num1, "-", num2, "=", subtract(num1, num2))
+            answer = subtract(num1, num2)
+            print(num1, "-", num2, "=", answer)
+            logger_1.info("%d - %d = %d calculated", num1, num2, answer)
 
         elif choice == '3':
-            print(num1, "*", num2, "=", multiply(num1, num2))
+            answer = multiply(num1, num2)
+            print(num1, "*", num2, "=", answer)
+            logger_1.info("%d * %d = %d calculated", num1, num2, answer)
 
         elif choice == '4':
-            print(num1, "/", num2, "=", divide(num1, num2))
+            if num2 == 0:
+                print("divide zero error")
+                logger_2.error("divide zero error")
+            else:
+                answer = divide(num1, num2)
+                print(num1, "/", num2, "=", answer)
+                logger_1.info("%d / %d = %d calculated", num1, num2, answer)
 
         # check if user wants another calculation
         # break the while loop if answer is no
@@ -94,3 +125,4 @@ while True:
 
     else:
         print("Invalid Input")
+        logger_2.error("Invalid Input error")
