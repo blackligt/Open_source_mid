@@ -1,31 +1,50 @@
 # Program make a simple calculator
+'''계산기 프로그램'''
 
 # This function adds two numbers
-def add(x, y):
-    return x + y
+def add(add_num1, add_num2):
+    '''
+    두 수를 입력받고 더하는 함수
+    '''
+    return add_num1 + add_num2
 
 # This function subtracts two numbers
-def subtract(x, y):
-    return x - y
+
+
+def subtract(sub_num1, sub_num2):
+    '''
+    두 수를 입력받고 빼는 함수
+    '''
+    return sub_num1 - sub_num2
 
 # This function multiplies two numbers
-def multiply(x, y):
-    return x * y
 
-#Need to define divide function.
-def divide (x,y):
-    if y == 0:
+
+def multiply(mul_num1, mul_num2):
+    '''
+    두 수를 입력받고 곱하는 함수
+    '''
+    return mul_num1 * mul_num2
+
+# Need to define divide function.
+
+
+def divide(div_num1, div_num2):
+    '''
+    두 수를 입력받고 나누는 함수
+    '''
+    if div_num2 == 0:
         print("divide by zero error")
         return "error"
     else:
-        return x/y
+        return div_num1/div_num2
 
 
 print("Select operation.")
 print("1.Add")
 print("2.Subtract")
 print("3.Multiply")
-print("4.Divide") 
+print("4.Divide")
 
 
 while True:
@@ -45,10 +64,9 @@ while True:
 
         elif choice == '3':
             print(num1, "*", num2, "=", multiply(num1, num2))
-            
-        elif choice =='4':
-            print(num1, "/", num2, "=", divide(num1,num2))
-            
+
+        elif choice == '4':
+            print(num1, "/", num2, "=", divide(num1, num2))
 
         # check if user wants another calculation
         # break the while loop if answer is no
