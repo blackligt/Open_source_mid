@@ -2,6 +2,8 @@
 '''계산기 프로그램'''
 
 # This function adds two numbers
+
+
 def add(add_num1, add_num2):
     '''
     두 수를 입력받고 더하는 함수
@@ -40,6 +42,20 @@ def divide(div_num1, div_num2):
         return div_num1/div_num2
 
 
+def end_qustion():
+    '''프로그램 종료 여부를 물어보는 함수'''
+    next_calculation = input("Let's do next calculation? (yes/no): ")
+    low_next_calculation = next_calculation.lower()
+    if low_next_calculation == "no":
+        return 0
+
+    elif low_next_calculation == "yes":
+        return 1
+
+    else:
+        return end_qustion()
+
+
 print("Select operation.")
 print("1.Add")
 print("2.Subtract")
@@ -70,10 +86,11 @@ while True:
 
         # check if user wants another calculation
         # break the while loop if answer is no
-        next_calculation = input("Let's do next calculation? (yes/no): ")
-        low_next_calculation = next_calculation.lower()
-        if low_next_calculation == "no":
+        status = end_qustion()
+        if status == 0:
             break
+        elif status == 1:
+            continue
 
     else:
         print("Invalid Input")
