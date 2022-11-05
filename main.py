@@ -14,7 +14,11 @@ def multiply(x, y):
 
 #Need to define divide function.
 def divide (x,y):
-    return x/y
+    if y == 0:
+        print("divide by zero error")
+        return "error"
+    else:
+        return x/y
 
 
 print("Select operation.")
