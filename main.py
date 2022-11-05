@@ -1,7 +1,8 @@
 # Program make a simple calculator
 '''계산기 프로그램'''
-
 import logging
+import function as func
+
 formatter = logging.Formatter('%(asctime)s %(message)s')
 
 logger_1 = logging.getLogger('normal_log')
@@ -18,41 +19,7 @@ file_handler_2.setFormatter(formatter)
 logger_1.addHandler(file_handler_1)
 logger_2.addHandler(file_handler_2)
 
-# This function adds two numbers
 
-
-def add(add_num1, add_num2):
-    '''
-    두 수를 입력받고 더하는 함수
-    '''
-    return add_num1 + add_num2
-
-# This function subtracts two numbers
-
-
-def subtract(sub_num1, sub_num2):
-    '''
-    두 수를 입력받고 빼는 함수
-    '''
-    return sub_num1 - sub_num2
-
-# This function multiplies two numbers
-
-
-def multiply(mul_num1, mul_num2):
-    '''
-    두 수를 입력받고 곱하는 함수
-    '''
-    return mul_num1 * mul_num2
-
-# Need to define divide function.
-
-
-def divide(div_num1, div_num2):
-    '''
-    두 수를 입력받고 나누는 함수
-    '''
-    return div_num1/div_num2
 
 
 def end_qustion():
@@ -92,17 +59,17 @@ while True:
         num2 = float(input("Enter second number: "))
 
         if choice == '1':
-            answer = add(num1, num2)
+            answer = func.add(num1, num2)
             print(num1, "+", num2, "=", answer)
             logger_1.info("%d + %d = %d calculated", num1, num2, answer)
 
         elif choice == '2':
-            answer = subtract(num1, num2)
+            answer = func.subtract(num1, num2)
             print(num1, "-", num2, "=", answer)
             logger_1.info("%d - %d = %d calculated", num1, num2, answer)
 
         elif choice == '3':
-            answer = multiply(num1, num2)
+            answer = func.multiply(num1, num2)
             print(num1, "*", num2, "=", answer)
             logger_1.info("%d * %d = %d calculated", num1, num2, answer)
 
@@ -111,7 +78,7 @@ while True:
                 print("divide zero error")
                 logger_2.error("divide zero error")
             else:
-                answer = divide(num1, num2)
+                answer = func.divide(num1, num2)
                 print(num1, "/", num2, "=", answer)
                 logger_1.info("%d / %d = %d calculated", num1, num2, answer)
 
