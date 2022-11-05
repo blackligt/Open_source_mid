@@ -47,7 +47,13 @@ def end_qustion():
     next_calculation = input("Let's do next calculation? (yes/no): ")
     low_next_calculation = next_calculation.lower()
     if low_next_calculation == "no":
-        return 0
+        end_answer = input("Are you sure? (yes/no): ")
+        low_end_answer = end_answer.lower()
+        if low_end_answer == "yes":
+            return 0
+
+        else:
+            return 1
 
     elif low_next_calculation == "yes":
         return 1
